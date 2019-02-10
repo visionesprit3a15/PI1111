@@ -107,44 +107,25 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
-        elseif (0 === strpos($pathinfo, '/login')) {
-            // fos_user_security_login
-            if ('/login' === $pathinfo) {
-                $ret = array (  '_controller' => 'fos_user.security.controller:loginAction',  '_route' => 'fos_user_security_login',);
-                if (!in_array($canonicalMethod, ['GET', 'POST'])) {
-                    $allow = array_merge($allow, ['GET', 'POST']);
-                    goto not_fos_user_security_login;
-                }
-
-                return $ret;
-            }
-            not_fos_user_security_login:
-
-            // fos_user_security_check
-            if ('/login_check' === $pathinfo) {
-                $ret = array (  '_controller' => 'fos_user.security.controller:checkAction',  '_route' => 'fos_user_security_check',);
-                if (!in_array($requestMethod, ['POST'])) {
-                    $allow = array_merge($allow, ['POST']);
-                    goto not_fos_user_security_check;
-                }
-
-                return $ret;
-            }
-            not_fos_user_security_check:
-
-        }
-
-        // fos_user_security_logout
-        if ('/logout' === $pathinfo) {
-            $ret = array (  '_controller' => 'fos_user.security.controller:logoutAction',  '_route' => 'fos_user_security_logout',);
-            if (!in_array($canonicalMethod, ['GET', 'POST'])) {
-                $allow = array_merge($allow, ['GET', 'POST']);
-                goto not_fos_user_security_logout;
+        // mission_homepage
+        if ('' === $trimmedPathinfo) {
+            $ret = array (  '_controller' => 'MissionBundle\\Controller\\DefaultController::indexAction',  '_route' => 'mission_homepage',);
+            if ('/' === substr($pathinfo, -1)) {
+                // no-op
+            } elseif ('GET' !== $canonicalMethod) {
+                goto not_mission_homepage;
+            } else {
+                return array_replace($ret, $this->redirect($rawPathinfo.'/', 'mission_homepage'));
             }
 
             return $ret;
         }
-        not_fos_user_security_logout:
+        not_mission_homepage:
+
+        // page
+        if ('/page' === $pathinfo) {
+            return array (  '_controller' => 'MissionBundle\\Controller\\DefaultController::pageAction',  '_route' => 'page',);
+        }
 
         if (0 === strpos($pathinfo, '/profile')) {
             // fos_user_profile_show
@@ -193,7 +174,67 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
-        elseif (0 === strpos($pathinfo, '/register')) {
+        elseif (0 === strpos($pathinfo, '/l')) {
+            if (0 === strpos($pathinfo, '/layout')) {
+                // layout
+                if ('/layout' === $pathinfo) {
+                    return array (  '_controller' => 'MissionBundle\\Controller\\DefaultController::layoutAction',  '_route' => 'layout',);
+                }
+
+                // layoutB
+                if ('/layoutB' === $pathinfo) {
+                    return array (  '_controller' => 'MissionBundle\\Controller\\DefaultController::layoutBAction',  '_route' => 'layoutB',);
+                }
+
+            }
+
+            elseif (0 === strpos($pathinfo, '/login')) {
+                // fos_user_security_login
+                if ('/login' === $pathinfo) {
+                    $ret = array (  '_controller' => 'fos_user.security.controller:loginAction',  '_route' => 'fos_user_security_login',);
+                    if (!in_array($canonicalMethod, ['GET', 'POST'])) {
+                        $allow = array_merge($allow, ['GET', 'POST']);
+                        goto not_fos_user_security_login;
+                    }
+
+                    return $ret;
+                }
+                not_fos_user_security_login:
+
+                // fos_user_security_check
+                if ('/login_check' === $pathinfo) {
+                    $ret = array (  '_controller' => 'fos_user.security.controller:checkAction',  '_route' => 'fos_user_security_check',);
+                    if (!in_array($requestMethod, ['POST'])) {
+                        $allow = array_merge($allow, ['POST']);
+                        goto not_fos_user_security_check;
+                    }
+
+                    return $ret;
+                }
+                not_fos_user_security_check:
+
+            }
+
+            // fos_user_security_logout
+            if ('/logout' === $pathinfo) {
+                $ret = array (  '_controller' => 'fos_user.security.controller:logoutAction',  '_route' => 'fos_user_security_logout',);
+                if (!in_array($canonicalMethod, ['GET', 'POST'])) {
+                    $allow = array_merge($allow, ['GET', 'POST']);
+                    goto not_fos_user_security_logout;
+                }
+
+                return $ret;
+            }
+            not_fos_user_security_logout:
+
+        }
+
+        // index1
+        if ('/index1' === $pathinfo) {
+            return array (  '_controller' => 'MissionBundle\\Controller\\DefaultController::index1Action',  '_route' => 'index1',);
+        }
+
+        if (0 === strpos($pathinfo, '/register')) {
             // fos_user_registration_register
             if ('/register' === $trimmedPathinfo) {
                 $ret = array (  '_controller' => 'fos_user.registration.controller:registerAction',  '_route' => 'fos_user_registration_register',);
