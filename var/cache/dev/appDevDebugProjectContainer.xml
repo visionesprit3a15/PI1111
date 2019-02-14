@@ -72,7 +72,7 @@
         <parameter key="namespace">FOS\UserBundle</parameter>
       </parameter>
       <parameter key="MissionBundle" type="collection">
-        <parameter key="parent">null</parameter>
+        <parameter key="parent">FOSUserBundle</parameter>
         <parameter key="path">C:\wamp64\www\PI1111\src\MissionBundle</parameter>
         <parameter key="namespace">MissionBundle</parameter>
       </parameter>
@@ -108,7 +108,7 @@
     <parameter key="container.dumper.inline_class_loader">true</parameter>
     <parameter key="database_host">127.0.0.1</parameter>
     <parameter key="database_port">null</parameter>
-    <parameter key="database_name">smartstartdb</parameter>
+    <parameter key="database_name">SmartStartDB</parameter>
     <parameter key="database_user">root</parameter>
     <parameter key="database_password">null</parameter>
     <parameter key="mailer_transport">smtp</parameter>
@@ -361,15 +361,15 @@
     <parameter key="fos_user.storage">orm</parameter>
     <parameter key="fos_user.firewall_name">main</parameter>
     <parameter key="fos_user.model_manager_name">null</parameter>
-    <parameter key="fos_user.model.user.class">AppBundle\Entity\User</parameter>
-    <parameter key="fos_user.profile.form.type">FOS\UserBundle\Form\Type\ProfileFormType</parameter>
+    <parameter key="fos_user.model.user.class">MissionBundle\Entity\User</parameter>
+    <parameter key="fos_user.profile.form.type">MissionBundle\Form\RegistrationType</parameter>
     <parameter key="fos_user.profile.form.name">fos_user_profile_form</parameter>
     <parameter key="fos_user.profile.form.validation_groups" type="collection">
       <parameter>Profile</parameter>
       <parameter>Default</parameter>
     </parameter>
     <parameter key="fos_user.registration.confirmation.enabled">false</parameter>
-    <parameter key="fos_user.registration.form.type">FOS\UserBundle\Form\Type\RegistrationFormType</parameter>
+    <parameter key="fos_user.registration.form.type">MissionBundle\Form\RegistrationType</parameter>
     <parameter key="fos_user.registration.form.name">fos_user_registration_form</parameter>
     <parameter key="fos_user.registration.form.validation_groups" type="collection">
       <parameter>Registration</parameter>
@@ -3733,6 +3733,10 @@
         <argument>!App</argument>
       </call>
       <call method="addPath">
+        <argument>C:\wamp64\www\PI1111\src\MissionBundle/Resources/views</argument>
+        <argument>FOSUser</argument>
+      </call>
+      <call method="addPath">
         <argument>C:\wamp64\www\PI1111\vendor\friendsofsymfony\user-bundle/Resources/views</argument>
         <argument>FOSUser</argument>
       </call>
@@ -3743,10 +3747,6 @@
       <call method="addPath">
         <argument>C:\wamp64\www\PI1111\src\MissionBundle/Resources/views</argument>
         <argument>Mission</argument>
-      </call>
-      <call method="addPath">
-        <argument>C:\wamp64\www\PI1111\src\MissionBundle/Resources/views</argument>
-        <argument>!Mission</argument>
       </call>
       <call method="addPath">
         <argument>C:\wamp64\www\PI1111\vendor\symfony\symfony\src\Symfony\Bundle\DebugBundle/Resources/views</argument>
@@ -4181,7 +4181,7 @@
         <argument key="driver">pdo_mysql</argument>
         <argument key="host">127.0.0.1</argument>
         <argument key="port">null</argument>
-        <argument key="dbname">smartstartdb</argument>
+        <argument key="dbname">SmartStartDB</argument>
         <argument key="user">root</argument>
         <argument key="password">null</argument>
         <argument key="charset">UTF8</argument>
@@ -4334,7 +4334,6 @@
     <service id="doctrine.orm.default_configuration" class="Doctrine\ORM\Configuration" public="false">
       <call method="setEntityNamespaces">
         <argument type="collection">
-          <argument key="AppBundle">AppBundle\Entity</argument>
           <argument key="MissionBundle">MissionBundle\Entity</argument>
         </argument>
       </call>
@@ -4381,15 +4380,10 @@
     <service id="doctrine.orm.default_annotation_metadata_driver" class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
       <argument type="service" id="annotations.cached_reader"/>
       <argument type="collection">
-        <argument>C:\wamp64\www\PI1111\src\AppBundle\Entity</argument>
         <argument>C:\wamp64\www\PI1111\src\MissionBundle\Entity</argument>
       </argument>
     </service>
     <service id="doctrine.orm.default_metadata_driver" class="Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain" public="false">
-      <call method="addDriver">
-        <argument type="service" id="doctrine.orm.default_annotation_metadata_driver"/>
-        <argument>AppBundle\Entity</argument>
-      </call>
       <call method="addDriver">
         <argument type="service" id="doctrine.orm.default_annotation_metadata_driver"/>
         <argument>MissionBundle\Entity</argument>
@@ -4537,7 +4531,7 @@
       <argument type="service" id="fos_user.util.password_updater"/>
       <argument type="service" id="fos_user.util.canonical_fields_updater"/>
       <argument type="service" id="fos_user.object_manager"/>
-      <argument>AppBundle\Entity\User</argument>
+      <argument>MissionBundle\Entity\User</argument>
     </service>
     <service id="fos_user.object_manager" class="Doctrine\Common\Persistence\ObjectManager" public="false">
       <argument>null</argument>
@@ -4686,12 +4680,12 @@
     <service id="fos_user.profile.form.factory" class="FOS\UserBundle\Form\Factory\FormFactory">
       <argument type="service" id="form.factory"/>
       <argument>fos_user_profile_form</argument>
-      <argument>FOS\UserBundle\Form\Type\ProfileFormType</argument>
+      <argument>MissionBundle\Form\RegistrationType</argument>
       <argument>%fos_user.profile.form.validation_groups%</argument>
     </service>
     <service id="fos_user.profile.form.type" class="FOS\UserBundle\Form\Type\ProfileFormType">
       <tag name="form.type" alias="fos_user_profile"/>
-      <argument>AppBundle\Entity\User</argument>
+      <argument>MissionBundle\Entity\User</argument>
     </service>
     <service id="fos_user.profile.controller" class="FOS\UserBundle\Controller\ProfileController" public="true">
       <argument type="service" id="debug.event_dispatcher"/>
@@ -4704,12 +4698,12 @@
     <service id="fos_user.registration.form.factory" class="FOS\UserBundle\Form\Factory\FormFactory">
       <argument type="service" id="form.factory"/>
       <argument>fos_user_registration_form</argument>
-      <argument>FOS\UserBundle\Form\Type\RegistrationFormType</argument>
+      <argument>MissionBundle\Form\RegistrationType</argument>
       <argument>%fos_user.registration.form.validation_groups%</argument>
     </service>
     <service id="fos_user.registration.form.type" class="FOS\UserBundle\Form\Type\RegistrationFormType">
       <tag name="form.type" alias="fos_user_registration"/>
-      <argument>AppBundle\Entity\User</argument>
+      <argument>MissionBundle\Entity\User</argument>
     </service>
     <service id="fos_user.registration.controller" class="FOS\UserBundle\Controller\RegistrationController" public="true">
       <argument type="service" id="debug.event_dispatcher"/>
@@ -4728,7 +4722,7 @@
     </service>
     <service id="fos_user.change_password.form.type" class="FOS\UserBundle\Form\Type\ChangePasswordFormType">
       <tag name="form.type" alias="fos_user_change_password"/>
-      <argument>AppBundle\Entity\User</argument>
+      <argument>MissionBundle\Entity\User</argument>
     </service>
     <service id="fos_user.change_password.controller" class="FOS\UserBundle\Controller\ChangePasswordController" public="true">
       <argument type="service" id="debug.event_dispatcher"/>
@@ -4746,7 +4740,7 @@
     </service>
     <service id="fos_user.resetting.form.type" class="FOS\UserBundle\Form\Type\ResettingFormType">
       <tag name="form.type" alias="fos_user_resetting"/>
-      <argument>AppBundle\Entity\User</argument>
+      <argument>MissionBundle\Entity\User</argument>
     </service>
     <service id="fos_user.listener.resetting" class="FOS\UserBundle\EventListener\ResettingListener">
       <tag name="kernel.event_subscriber"/>

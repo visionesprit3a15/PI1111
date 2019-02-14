@@ -71,10 +71,16 @@ swiftmailer:
 fos_user:
     db_driver: orm
     firewall_name: main
-    user_class: AppBundle\Entity\User
+    user_class: MissionBundle\Entity\User
     from_email:
         address: 'mail.redington.co.in'
         sender_name: 'cloudsupport'
+    registration:
+        form:
+            type: MissionBundle\Form\RegistrationType
+    profile:
+        form:
+            type: MissionBundle\Form\RegistrationType
     service:
         mailer: 'fos_user.mailer.noop'
 
