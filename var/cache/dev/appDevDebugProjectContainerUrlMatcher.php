@@ -107,9 +107,41 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
+        elseif (0 === strpos($pathinfo, '/mission')) {
+            // mission_index
+            if ('/mission/index' === $pathinfo) {
+                $ret = array (  '_controller' => 'MissionBundle\\Controller\\MissionController::indexAction',  '_route' => 'mission_index',);
+                if (!in_array($canonicalMethod, ['GET'])) {
+                    $allow = array_merge($allow, ['GET']);
+                    goto not_mission_index;
+                }
+
+                return $ret;
+            }
+            not_mission_index:
+
+            // mission_show
+            if (preg_match('#^/mission/(?P<id>[^/]++)/show$#sD', $pathinfo, $matches)) {
+                $ret = $this->mergeDefaults(array_replace($matches, ['_route' => 'mission_show']), array (  '_controller' => 'MissionBundle\\Controller\\MissionController::showAction',));
+                if (!in_array($canonicalMethod, ['GET'])) {
+                    $allow = array_merge($allow, ['GET']);
+                    goto not_mission_show;
+                }
+
+                return $ret;
+            }
+            not_mission_show:
+
+            // mission_create
+            if ('/mission/create' === $pathinfo) {
+                return array (  '_controller' => 'MissionBundle\\Controller\\MissionController::createAction',  '_route' => 'mission_create',);
+            }
+
+        }
+
         // mission_homepage
         if ('' === $trimmedPathinfo) {
-            $ret = array (  '_controller' => 'MissionBundle\\Controller\\DefaultController::indexAction',  '_route' => 'mission_homepage',);
+            $ret = array (  '_controller' => 'MissionBundle\\Controller\\MissionController::indexAction',  '_route' => 'mission_homepage',);
             if ('/' === substr($pathinfo, -1)) {
                 // no-op
             } elseif ('GET' !== $canonicalMethod) {

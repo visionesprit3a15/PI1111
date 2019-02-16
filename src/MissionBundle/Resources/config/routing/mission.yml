@@ -1,5 +1,5 @@
 mission_index:
-    path:     /
+    path:     /index
     defaults: { _controller: "MissionBundle:Mission:index" }
     methods:  GET
 
@@ -7,6 +7,9 @@ mission_show:
     path:     /{id}/show
     defaults: { _controller: "MissionBundle:Mission:show" }
     methods:  GET
+mission_create:
+    path:     /create
+    defaults: { _controller: "MissionBundle:Mission:create" }
 
 
 

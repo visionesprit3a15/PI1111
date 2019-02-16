@@ -80,6 +80,19 @@ class Mission
      */
     Private $categorie;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="deshebergement", type="string", length=255, nullable=false)
+     */
+    private $deshebergement;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="destransport", type="string", length=255, nullable=false)
+     */
+    private $destransport;
 
     /**
      * Get id
@@ -283,5 +296,53 @@ class Mission
     public function getNom()
     {
         return $this->nom;
+    }
+
+    /**
+     * Set deshebergement
+     *
+     * @param string $deshebergement
+     *
+     * @return Mission
+     */
+    public function setDeshebergement($deshebergement)
+    {
+        $this->deshebergement = $deshebergement;
+
+        return $this;
+    }
+
+    /**
+     * Get deshebergement
+     *
+     * @return string
+     */
+    public function getDeshebergement()
+    {
+        return $this->deshebergement;
+    }
+
+    /**
+     * Set destransport
+     *
+     * @param string $destransport
+     *
+     * @return Mission
+     */
+    public function setDestransport($destransport)
+    {
+        $this->destransport = $destransport;
+
+        return $this;
+    }
+
+    /**
+     * Get destransport
+     *
+     * @return string
+     */
+    public function getDestransport()
+    {
+        return $this->destransport;
     }
 }

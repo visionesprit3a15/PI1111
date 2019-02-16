@@ -1,9 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Missions list</h1>
 
-    <table>
+    {% block content %}
+        <center>
+    <h1>Missions list</h1>
+<br>
+            <br>
+    <table border="2">
         <thead>
             <tr>
                 <th>Id</th>
@@ -35,6 +38,6 @@
         {% endfor %}
         </tbody>
     </table>
-
-    
+<br><br>
+        </center>
 {% endblock %}
