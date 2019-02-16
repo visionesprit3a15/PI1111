@@ -1,0 +1,12 @@
+mission_index:
+    path:     /
+    defaults: { _controller: "MissionBundle:Mission:index" }
+    methods:  GET
+
+mission_show:
+    path:     /{id}/show
+    defaults: { _controller: "MissionBundle:Mission:show" }
+    methods:  GET
+
+
+

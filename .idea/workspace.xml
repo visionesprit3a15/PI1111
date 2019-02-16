@@ -938,8 +938,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MissionBundle/Resources/views/Registration/register_content.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="85" lean-forward="true" selection-start-line="85" selection-end-line="85" />
+            <state relative-caret-position="1500">
+              <caret line="75" column="74" selection-start-line="75" selection-start-column="74" selection-end-line="75" selection-end-column="74" />
             </state>
           </provider>
         </entry>
@@ -1192,6 +1192,11 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="MissionBundle" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="PI1111" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PI1111" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -1260,7 +1265,7 @@
       <workItem from="1549956508741" duration="870000" />
       <workItem from="1549991561213" duration="4776000" />
       <workItem from="1550044123998" duration="22925000" />
-      <workItem from="1550162969023" duration="6569000" />
+      <workItem from="1550162969023" duration="6313000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1549621120986</created>
@@ -1308,7 +1313,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87932000" />
+    <option name="totallyTimeSpent" value="87676000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1321,7 +1326,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19062027" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -1697,8 +1701,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MissionBundle/Resources/views/Registration/register_content.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="85" lean-forward="true" selection-start-line="85" selection-end-line="85" />
+        <state relative-caret-position="1500">
+          <caret line="75" column="74" selection-start-line="75" selection-start-column="74" selection-end-line="75" selection-end-column="74" />
         </state>
       </provider>
     </entry>
