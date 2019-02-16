@@ -58,4 +58,31 @@ class MissionController extends Controller
         'form'=>$form->createView()
     ));
     }
+    public function updateAction(Request $request,$id)
+    {
+        $em=$this->getDoctrine()->getManager();
+        $mission=$em->getRepository(Mission::class)->find($id);
+        $form=$this->createForm(MissionType::class,$mission);
+
+        $form=$form->handleRequest($request);
+        if ($form->isValid())
+        {
+            $em->flush();
+            return $this->redirectToRoute('mission_index');
+        }
+
+        return $this->render('mission\update.html.twig', array(
+            'form'=>$form->createView(),
+
+        ));
+    }
+    public function deleteAction($id)
+    {
+        $em=$this->getDoctrine()->getManager();
+        $mission=$em->getRepository(Mission::class)->find($id);
+        $em->remove($mission);
+        $em->flush();
+        return $this->redirectToRoute('mission_index');
+
+    }
 }

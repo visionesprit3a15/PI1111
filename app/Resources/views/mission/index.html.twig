@@ -16,21 +16,26 @@
                 <th>Transport</th>
                 <th>Nombrepersonne</th>
                 <th>Actions</th>
+
             </tr>
         </thead>
         <tbody>
         {% for mission in missions %}
             <tr>
-                <td><a href="{{ path('mission_show', { 'id': mission.id }) }}">{{ mission.id }}</a></td>
+
+                <td>{{ mission.id }}</td>
                 <td>{{ mission.duree }}</td>
                 <td>{{ mission.hebergement }}</td>
                 <td>{{ mission.prix }}</td>
                 <td>{{ mission.transport }}</td>
                 <td>{{ mission.nombrepersonne }}</td>
+
                 <td>
                     <ul>
                         <li>
                             <a href="{{ path('mission_show', { 'id': mission.id }) }}">show</a>
+                            <a href="{{ path('mission_update', { 'id': mission.id }) }}">update</a>
+                            <a href="{{ path('mission_delete', { 'id': mission.id }) }}">delete</a>
                         </li>
                     </ul>
                 </td>

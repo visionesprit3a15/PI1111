@@ -137,6 +137,16 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
                 return array (  '_controller' => 'MissionBundle\\Controller\\MissionController::createAction',  '_route' => 'mission_create',);
             }
 
+            // mission_update
+            if (0 === strpos($pathinfo, '/mission/update') && preg_match('#^/mission/update/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'mission_update']), array (  '_controller' => 'MissionBundle\\Controller\\MissionController::updateAction',));
+            }
+
+            // mission_delete
+            if (0 === strpos($pathinfo, '/mission/delete') && preg_match('#^/mission/delete/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'mission_delete']), array (  '_controller' => 'MissionBundle\\Controller\\MissionController::deleteAction',));
+            }
+
         }
 
         // mission_homepage
