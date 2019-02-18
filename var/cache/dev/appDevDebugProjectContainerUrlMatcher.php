@@ -147,6 +147,11 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
                 return $this->mergeDefaults(array_replace($matches, ['_route' => 'mission_delete']), array (  '_controller' => 'MissionBundle\\Controller\\MissionController::deleteAction',));
             }
 
+            // rechercheMission
+            if ('/mission/recherchenom' === $pathinfo) {
+                return array (  '_controller' => 'MissionBundle\\Controller\\MissionController::rechercheParNomAction',  '_route' => 'rechercheMission',);
+            }
+
         }
 
         // mission_homepage
@@ -164,55 +169,63 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         }
         not_mission_homepage:
 
-        // page
-        if ('/page' === $pathinfo) {
-            return array (  '_controller' => 'MissionBundle\\Controller\\DefaultController::pageAction',  '_route' => 'page',);
-        }
-
-        if (0 === strpos($pathinfo, '/profile')) {
-            // fos_user_profile_show
-            if ('/profile' === $trimmedPathinfo) {
-                $ret = array (  '_controller' => 'fos_user.profile.controller:showAction',  '_route' => 'fos_user_profile_show',);
-                if ('/' === substr($pathinfo, -1)) {
-                    // no-op
-                } elseif ('GET' !== $canonicalMethod) {
-                    goto not_fos_user_profile_show;
-                } else {
-                    return array_replace($ret, $this->redirect($rawPathinfo.'/', 'fos_user_profile_show'));
-                }
-
-                if (!in_array($canonicalMethod, ['GET'])) {
-                    $allow = array_merge($allow, ['GET']);
-                    goto not_fos_user_profile_show;
-                }
-
-                return $ret;
+        if (0 === strpos($pathinfo, '/p')) {
+            // page
+            if ('/page' === $pathinfo) {
+                return array (  '_controller' => 'MissionBundle\\Controller\\DefaultController::pageAction',  '_route' => 'page',);
             }
-            not_fos_user_profile_show:
 
-            // fos_user_profile_edit
-            if ('/profile/edit' === $pathinfo) {
-                $ret = array (  '_controller' => 'fos_user.profile.controller:editAction',  '_route' => 'fos_user_profile_edit',);
-                if (!in_array($canonicalMethod, ['GET', 'POST'])) {
-                    $allow = array_merge($allow, ['GET', 'POST']);
-                    goto not_fos_user_profile_edit;
-                }
-
-                return $ret;
+            // sandbox_pdfexample
+            if ('/pdf-example' === $pathinfo) {
+                return array (  '_controller' => 'MissionBundle\\Controller\\DefaultController::pdfAction',  '_route' => 'sandbox_pdfexample',);
             }
-            not_fos_user_profile_edit:
 
-            // fos_user_change_password
-            if ('/profile/change-password' === $pathinfo) {
-                $ret = array (  '_controller' => 'fos_user.change_password.controller:changePasswordAction',  '_route' => 'fos_user_change_password',);
-                if (!in_array($canonicalMethod, ['GET', 'POST'])) {
-                    $allow = array_merge($allow, ['GET', 'POST']);
-                    goto not_fos_user_change_password;
+            if (0 === strpos($pathinfo, '/profile')) {
+                // fos_user_profile_show
+                if ('/profile' === $trimmedPathinfo) {
+                    $ret = array (  '_controller' => 'fos_user.profile.controller:showAction',  '_route' => 'fos_user_profile_show',);
+                    if ('/' === substr($pathinfo, -1)) {
+                        // no-op
+                    } elseif ('GET' !== $canonicalMethod) {
+                        goto not_fos_user_profile_show;
+                    } else {
+                        return array_replace($ret, $this->redirect($rawPathinfo.'/', 'fos_user_profile_show'));
+                    }
+
+                    if (!in_array($canonicalMethod, ['GET'])) {
+                        $allow = array_merge($allow, ['GET']);
+                        goto not_fos_user_profile_show;
+                    }
+
+                    return $ret;
                 }
+                not_fos_user_profile_show:
 
-                return $ret;
+                // fos_user_profile_edit
+                if ('/profile/edit' === $pathinfo) {
+                    $ret = array (  '_controller' => 'fos_user.profile.controller:editAction',  '_route' => 'fos_user_profile_edit',);
+                    if (!in_array($canonicalMethod, ['GET', 'POST'])) {
+                        $allow = array_merge($allow, ['GET', 'POST']);
+                        goto not_fos_user_profile_edit;
+                    }
+
+                    return $ret;
+                }
+                not_fos_user_profile_edit:
+
+                // fos_user_change_password
+                if ('/profile/change-password' === $pathinfo) {
+                    $ret = array (  '_controller' => 'fos_user.change_password.controller:changePasswordAction',  '_route' => 'fos_user_change_password',);
+                    if (!in_array($canonicalMethod, ['GET', 'POST'])) {
+                        $allow = array_merge($allow, ['GET', 'POST']);
+                        goto not_fos_user_change_password;
+                    }
+
+                    return $ret;
+                }
+                not_fos_user_change_password:
+
             }
-            not_fos_user_change_password:
 
         }
 
@@ -274,6 +287,11 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         // index1
         if ('/index1' === $pathinfo) {
             return array (  '_controller' => 'MissionBundle\\Controller\\DefaultController::index1Action',  '_route' => 'index1',);
+        }
+
+        // index2
+        if ('/index2' === $pathinfo) {
+            return array (  '_controller' => 'MissionBundle\\Controller\\DefaultController::index2Action',  '_route' => 'index2',);
         }
 
         if (0 === strpos($pathinfo, '/register')) {

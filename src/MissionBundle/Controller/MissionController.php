@@ -7,7 +7,10 @@ use MissionBundle\Entity\Message;
 use MissionBundle\Entity\Mission;
 use MissionBundle\Form\MissionType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 
 /**
@@ -84,5 +87,19 @@ class MissionController extends Controller
         $em->flush();
         return $this->redirectToRoute('mission_index');
 
+    }
+    public function rechercheParNomAction(Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $nom = $request->get('nom');
+            $missions = $this->getDoctrine()
+                ->getRepository(Mission::class)->findByNom($nom);
+            $se = new Serializer(array(new ObjectNormalizer()));
+
+            $data = $se->normalize($missions);
+            return new JsonResponse($data);
+        }
+        return $this->render('mission/rechercheMission.html.twig', array(// ...
+        ));
     }
 }
